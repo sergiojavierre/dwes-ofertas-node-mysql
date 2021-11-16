@@ -12,7 +12,7 @@ const getAll = (req,res) => {
     })
 }
 
-const getOfertasFromEstudiantes = (req,res) => {
+const getOfertasFromEstudiante = (req,res) => {
   connection.query(`select o.id, o.nombre, o.descripcion, o.salario, e.cif, e.nombre as nombre_empresa from ofertas o join empresas e on e.cif = o.empresa where id in (select oferta from suscripciones where estudiante = ${req.params.id})` , (err, rows) => {
     if (err) {
         console.log(err);
@@ -36,4 +36,4 @@ const getOfertasFromEstudiantes = (req,res) => {
 })
 }
 
-export {getAll, getOfertasFromEstudiantes}
+export {getAll, getOfertasFromEstudiante}
